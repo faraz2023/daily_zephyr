@@ -87,17 +87,25 @@ def main(export_path):
     prompt = f"""
     Using all insights and news provided below, write a detailed daily executive market report, titled "Daily Zephyr", tailored to the current date: {datetime.now().strftime('%Y-%m-%d')}. 
     Follow these instructions: 
-    1. IMPORTANT: Executive stock market report, in markdown format, at least 4000 words long and based solely on factual and actual information gathered from reputable sources and provided below. 
-    2. IMPORTANT: The citations and sources are provided to you for factual information, pay attention to keeping them, using them as reference and adding them in the output. For each cited source, keep the exact, full URL. ALL CITATION FOR EACH REFERENCED ITEM NEEDS TO BE INLINE AND FULLY WITHIN THE TEXT.
+    1. IMPORTANT: Executive stock market report, in markdown format, at least 5000 words long and based solely on factual and actual information gathered from reputable sources and provided below. 
+    2. IMPORTANT: The citations and sources are provided to you for factual information, pay attention to keeping them, using them as reference and adding them in the output. For each cited source, keep the exact, full URL. ALL CITATION FOR EACH REFERENCED ITEM NEEDS TO BE INLINE AND FULLY WITHIN THE TEXT so it can work as a hyperlink in the markdown code.
     3. IMPORTANT: INCLUDE AS MUCH AS ACTUAL, MOST UP TO DATE NUMERICAL DATA AS POSSIBLE. DO NOT MAKE UP ANY INFORMATION, BUT TRY TO USE AS MUCH AS POSSIBLE THE INFORMATION PROVIDED TO YOU.
-    4. Most recent developments (economic, geopolitics, and general news) and their potential impact on Markets,  
-    5. Sector-wise Stock Trends (Technology, Healthcare, Energy, Financial Services, etc.) with specific references and values with most up to date information. 
-    6. Opportunities and Risks, with specific references and values with most up to date information. 
-    7. Output should be in (and only in) fully compliant markdown syntax and be formatted for professional distribution.
+    4. IMPORTANT: MOST RECENT DEVELOPMENTS (ECONOMIC, GEOPOLITICAL, AND GENERAL NEWS) AND THEIR POTENTIAL IMPACT ON MARKETS, 
+    5. IMPORTANT: SECTOR-WISE STOCK TRENDS (TECHNOLOGY, HEALTHCARE, ENERGY, FINANCIAL SERVICES, ETC.) WITH SPECIFIC REFERENCES AND VALUES WITH MOST UP TO DATE INFORMATION. 
+    6. IMPORTANT: OPPORTUNITIES AND RISKS, WITH SPECIFIC REFERENCES AND VALUES WITH MOST UP TO DATE INFORMATION. 
+    7. IMPORTANT: OUTPUT SHOULD BE IN (AND ONLY IN) FULLY COMPLIANT MARKDOWN SYNTAX AND BE FORMATTED FOR PROFESSIONAL DISTRIBUTION.
     Focus on providing numerical data and clear, actionable insights. Ample information is provided to you, do not make up information or use generalized suggestions, we want the report to be exhaustive, long, specific and advantageous as possible.
     Do not make up information or use generalized suggestions, we want the report to be specific and advantageous as possible.
     If you are using any of the references provided to you, make sure to cite them, provide full source in ["<source>"] format.
     Ensure the report is well-structured, long, and formatted for professional distribution.
+
+    Start with: 
+
+    '''
+    Daily Zephyr
+    Date: {datetime.now().strftime("%B %d, %Y")}
+    ---
+    '''
 
     At the very end, add this disclaimer:
 
@@ -149,8 +157,10 @@ def main(export_path):
     with open(news_raw_output_path, "w") as f:
         f.write(overall_news_message)
     
+
+    # chat_raw_output_path = os.path.join(export_path, "chat_raw_output.md")
     chat_html_output_path = os.path.join(export_path, "daily_zephyr.html")
-    convert_md_to_html(chat_raw_output_path, chat_html_output_path)
+    convert_md_to_html(chat_raw_output_path, chat_html_output_path, os.path.join(os.getcwd(), "templates", "dz_v2.html"))
 
 
 
