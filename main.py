@@ -138,10 +138,10 @@ def main(export_path):
     - Global Market Trends
     - more if applicable.. (and do not hesitate to add more sections if needed)
     3. Economic News
-    - itemized market and economic news
+    - itemized market and economic news - don't miss out important news items... 
     4. General News
-    - general day news items... 
-    5. Sector-wise Stock Trends
+    - granular and cited general day news items- don't miss out important news items... 
+    5. Sector-wise Stock News, updates, trends:
     - Technology Sector
     - Healthcare Sector
     - Energy Sector
