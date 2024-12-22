@@ -152,10 +152,9 @@ def main(export_path):
     - Opportunities
     - Risks
     5. Conclusion
-    6. References
+    6. References (list, with items following style: e.g., [^1]: [Trading Economics - United States Stock Market](https://tradingeconomics.com/united-states/stock-market))
 
     
-    (Note make sure to properly link the headers to the sections in the table of contents)
     Here is the context information provided to you:
     {overall_news_message}
     """
