@@ -119,7 +119,7 @@ def main(export_path):
     ---
     '''
 
-    At the very end, add this disclaimer:
+    At the very very end, and after the references section, add this disclaimer:
 
     '''
     ---
@@ -157,6 +157,7 @@ def main(export_path):
     - Risks
     7. Conclusion
     8. References (list, with items following style: e.g., [^1]: [Trading Economics - United States Stock Market](https://tradingeconomics.com/united-states/stock-market))
+
 
     
     Here is the context information provided to you:
