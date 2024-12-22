@@ -21,7 +21,7 @@ def get_news_from_perplexity():
                                             We want a sector by sector breakdown of the market activity and the most recent developments and changes in the market from the past 24 hours.\
                                             In each sector provide most recent changes for the whole sector as well as most important stocks in the sector. Focus only on the verified and factual information. Go overboard and overdrive with reading accurate and reliable sources.\
                                             it is important that our analysis covers areas such as at least tech, health, energy, financial, consumer discretionary, communication, industrials, materials, real estate. Report should be at least 2000 words long\
-                                            !!! If you are reading from a chart, make sure to really pay attention to the chart and the data and provide the most accurate and up to date information from the chart.", search_recency_filter="day")
+                                            !!! Do not gather information from any chart or graph, only from the text. You have been shown to be unreliable at reading charts and graphs, so DO NOT do it and only rely on the text.", search_recency_filter="day")
     
     immediate_stock_market_news_message = embed_citations(immediate_stock_market_news['choices'][0]['message']['content'], immediate_stock_market_news['citations'])
     print(f"Finished immediate stock market news query, took {round(time.time() - start_time, 2)} seconds")
