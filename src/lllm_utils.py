@@ -54,7 +54,7 @@ def query_perplexity(query: str, search_recency_filter: str = "week", retries: i
             {"role": "system", "content": "Be precise and concise."},
             {"role": "user", "content": query}
         ],
-        "temperature": 0.02,
+        "temperature": 0.05,
         "top_p": 0.9,
         "return_citations": True,
         "search_domain_filter": ["perplexity.ai"],
