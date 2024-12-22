@@ -131,7 +131,7 @@ def main(export_path):
 
     ## Table of Contents
 
-    1. Executive Summary (with references and citations focusing on the most updated information for today's date: {datetime.now().strftime('%Y-%m-%d')} | {datetime.now().strftime("%B %d, %Y")})
+    1. Executive Summary (with REFERENCES and CITATIONS focusing on the most updated information for today's date: {datetime.now().strftime('%Y-%m-%d')} | {datetime.now().strftime("%B %d, %Y")})
     2. Recent Developments and Market Impacts
     - Geopolitical Landscape
     - Economic Indicators
