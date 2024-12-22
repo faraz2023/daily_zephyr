@@ -37,4 +37,5 @@ Daily Zephyr is a Python-based project that generates daily geopolitics and mark
 To generate the daily report, run the following command:
 
 ```
-python main
+./run.sh
+```
