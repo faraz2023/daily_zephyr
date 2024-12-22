@@ -20,7 +20,8 @@ def get_news_from_perplexity():
     immediate_stock_market_news = query_perplexity(f"Provide an exhaustive and detailed report on the stock market activity. Focused on today and ONLY today's date: {datetime.now().strftime('%Y-%m-%d')}\
                                             We want a sector by sector breakdown of the market activity and the most recent developments and changes in the market from the past 24 hours.\
                                             In each sector provide most recent changes for the whole sector as well as most important stocks in the sector. Focus only on the verified and factual information. Go overboard and overdrive with reading accurate and reliable sources.\
-                                            it is important that our analysis covers areas such as at least tech, health, energy, financial, consumer discretionary, communication, industrials, materials, real estate. Report should be at least 2000 words long", search_recency_filter="day")
+                                            it is important that our analysis covers areas such as at least tech, health, energy, financial, consumer discretionary, communication, industrials, materials, real estate. Report should be at least 2000 words long\
+                                            !!! If you are reading from a chart, make sure to really pay attention to the chart and the data and provide the most accurate and up to date information from the chart.", search_recency_filter="day")
     
     immediate_stock_market_news_message = embed_citations(immediate_stock_market_news['choices'][0]['message']['content'], immediate_stock_market_news['citations'])
     print(f"Finished immediate stock market news query, took {round(time.time() - start_time, 2)} seconds")
@@ -130,28 +131,28 @@ def main(export_path):
 
     ## Table of Contents
 
-    1. [Executive Summary](#executive-summary)
-    2. [Recent Developments and Market Impacts](#recent-developments-and-market-impacts)
-    - [Geopolitical Landscape](#geopolitical-landscape)
-    - [Economic Indicators](#economic-indicators)
-    - [Global Market Trends](#global-market-trends)
+    1. Executive Summary
+    2. Recent Developments and Market Impacts
+    - Geopolitical Landscape
+    - Economic Indicators
+    - Global Market Trends
     - more if applicable.. (and do not hesitate to add more sections if needed)
-    3. [Sector-wise Stock Trends](#sector-wise-stock-trends)
-    - [Technology Sector](#technology-sector)
-    - [Healthcare Sector](#healthcare-sector)
-    - [Energy Sector](#energy-sector)
-    - [Financial Services Sector](#financial-services-sector)
-    - [Consumer Discretionary Sector](#consumer-discretionary-sector)
-    - [Communication Services Sector](#communication-services-sector)
-    - [Industrials Sector](#industrials-sector)
-    - [Materials Sector](#materials-sector)
-    - [Real Estate Sector](#real-estate-sector)
+    3. Sector-wise Stock Trends
+    - Technology Sector
+    - Healthcare Sector
+    - Energy Sector
+    - Financial Services Sector
+    - Consumer Discretionary Sector
+    - Communication Services Sector
+    - Industrials Sector
+    - Materials Sector
+    - Real Estate Sector
     - more if applicable.. (and do not hesitate to add more sections if needed)
-    4. [Opportunities and Risks](#opportunities-and-risks)
-    - [Opportunities](#opportunities)
-    - [Risks](#risks)
-    5. [Conclusion](#conclusion)
-    6. [References](#references)
+    4. Opportunities and Risks
+    - Opportunities
+    - Risks
+    5. Conclusion
+    6. References
 
     
     (Note make sure to properly link the headers to the sections in the table of contents)
