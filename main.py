@@ -17,6 +17,15 @@ from openai import OpenAI
 def get_news_from_perplexity():
 
     start_time = time.time()
+    immediate_stock_market_news = query_perplexity(f"Provide an exhaustive and detailed report on the stock market activity. Focused on today and ONLY today's date: {datetime.now().strftime('%Y-%m-%d')}\
+                                            We want a sector by sector breakdown of the market activity and the most recent developments and changes in the market from the past 24 hours.\
+                                            In each sector provide most recent changes for the whole sector as well as most important stocks in the sector. Focus only on the verified and factual information. Go overboard and overdrive with reading accurate and reliable sources.\
+                                            it is important that our analysis covers areas such as at least tech, health, energy, financial, consumer discretionary, communication, industrials, materials, real estate. Report should be at least 2000 words long", search_recency_filter="day")
+    
+    immediate_stock_market_news_message = embed_citations(immediate_stock_market_news['choices'][0]['message']['content'], immediate_stock_market_news['citations'])
+    print(f"Finished immediate stock market news query, took {round(time.time() - start_time, 2)} seconds")
+
+    start_time = time.time()
     geopolitics_response = query_perplexity("Provide an exhaustive and detailed report on the geopolitical landscape and its\
                                         potential impact on the stock market. Focus on the most recent developments and their potential implications\
                                         for the market. Try to delve deep into the geopolitical landscape the tensions and growing areas of risk and opportunity. Report should be at least 2000 words long")
@@ -60,11 +69,13 @@ def get_news_from_perplexity():
     print(f"Finished general news query, took {round(time.time() - start_time, 2)} seconds")
 
 
-    all_messages = {'geopolitics news': geopolitics_message,
-                    'stock market news': stock_market_message,
-                    'market news': market_news_message,
-                    'economic news': economic_news_message,
-                    'general news': general_news_message}
+    all_messages = {
+        'immediate stock market news (24 hours- most up to date available information)': immediate_stock_market_news_message,
+        'geopolitics news': geopolitics_message,
+        'stock market news': stock_market_message,
+        'market news': market_news_message,
+        'economic news': economic_news_message,
+        'general news': general_news_message}
 
 
     overall_news_message = ""
@@ -89,7 +100,7 @@ def main(export_path):
     Follow these instructions: 
     1. IMPORTANT: Executive stock market report, in markdown format, at least 5000 words long and based solely on factual and actual information gathered from reputable sources and provided below. 
     2. IMPORTANT: The citations and sources are provided to you for factual information, pay attention to keeping them, using them as reference and adding them in the output. For each cited source, keep the exact, full URL. ALL CITATION FOR EACH REFERENCED ITEM NEEDS TO BE INLINE AND FULLY WITHIN THE TEXT so it can work as a hyperlink in the markdown code.
-    3. IMPORTANT: INCLUDE AS MUCH AS ACTUAL, MOST UP TO DATE NUMERICAL DATA AS POSSIBLE. DO NOT MAKE UP ANY INFORMATION, BUT TRY TO USE AS MUCH AS POSSIBLE THE INFORMATION PROVIDED TO YOU.
+    3. IMPORTANT: INCLUDE AS MUCH AS ACTUAL, MOST UP TO DATE NUMERICAL DATA AS POSSIBLE. DO NOT MAKE UP ANY INFORMATION, BUT TRY TO USE AS MUCH AS POSSIBLE THE INFORMATION PROVIDED TO YOU. Prioritize the most up to date information from the context provided to you.
     4. IMPORTANT: MOST RECENT DEVELOPMENTS (ECONOMIC, GEOPOLITICAL, AND GENERAL NEWS) AND THEIR POTENTIAL IMPACT ON MARKETS, 
     5. IMPORTANT: SECTOR-WISE STOCK TRENDS (TECHNOLOGY, HEALTHCARE, ENERGY, FINANCIAL SERVICES, ETC.) WITH SPECIFIC REFERENCES AND VALUES WITH MOST UP TO DATE INFORMATION. 
     6. IMPORTANT: OPPORTUNITIES AND RISKS, WITH SPECIFIC REFERENCES AND VALUES WITH MOST UP TO DATE INFORMATION. 
@@ -124,7 +135,7 @@ def main(export_path):
     - [Geopolitical Landscape](#geopolitical-landscape)
     - [Economic Indicators](#economic-indicators)
     - [Global Market Trends](#global-market-trends)
-    - more if applicable..
+    - more if applicable.. (and do not hesitate to add more sections if needed)
     3. [Sector-wise Stock Trends](#sector-wise-stock-trends)
     - [Technology Sector](#technology-sector)
     - [Healthcare Sector](#healthcare-sector)
@@ -135,13 +146,15 @@ def main(export_path):
     - [Industrials Sector](#industrials-sector)
     - [Materials Sector](#materials-sector)
     - [Real Estate Sector](#real-estate-sector)
-    - more if applicable..
+    - more if applicable.. (and do not hesitate to add more sections if needed)
     4. [Opportunities and Risks](#opportunities-and-risks)
     - [Opportunities](#opportunities)
     - [Risks](#risks)
     5. [Conclusion](#conclusion)
     6. [References](#references)
 
+    
+    (Note make sure to properly link the headers to the sections in the table of contents)
     Here is the context information provided to you:
     {overall_news_message}
     """
