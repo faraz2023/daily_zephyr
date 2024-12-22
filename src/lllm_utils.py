@@ -23,7 +23,6 @@ def get_openai_response(openai_client, message: str) -> str:
     response = openai_client.chat.completions.create(
         model="o1-preview",  
         messages=messages,
-        temperature=0.05,
     )
 
     # Extract and return the assistant's response
