@@ -99,7 +99,7 @@ def main(export_path):
     prompt = f"""
     Using all insights and news provided below, write a detailed daily executive market report, titled "Daily Zephyr", tailored to the current date: {datetime.now().strftime('%Y-%m-%d')}. 
     Follow these instructions: 
-    1. IMPORTANT: Executive stock market report, in markdown format, at least 5000 words long and based solely on factual and actual information gathered from reputable sources and provided below. 
+    1. IMPORTANT: Executive geopolitics and stock market report, in markdown format, at least 5000 words long and based solely on factual and actual information gathered from reputable sources and provided below. 
     2. IMPORTANT: The citations and sources are provided to you for factual information, pay attention to keeping them, using them as reference and adding them in the output. For each cited source, keep the exact, full URL. ALL CITATION FOR EACH REFERENCED ITEM NEEDS TO BE INLINE AND FULLY WITHIN THE TEXT so it can work as a hyperlink in the markdown code ( go with format e.g., :[^1](https://tandemadvisors.com/notes-)).
     3. IMPORTANT: INCLUDE AS MUCH AS ACTUAL, MOST UP TO DATE NUMERICAL DATA AS POSSIBLE. DO NOT MAKE UP ANY INFORMATION, BUT TRY TO USE AS MUCH AS POSSIBLE THE INFORMATION PROVIDED TO YOU. Prioritize the most up to date information from the context provided to you.
     4. IMPORTANT: MOST RECENT DEVELOPMENTS (ECONOMIC, GEOPOLITICAL, AND GENERAL NEWS) AND THEIR POTENTIAL IMPACT ON MARKETS, 
@@ -137,7 +137,11 @@ def main(export_path):
     - Economic Indicators
     - Global Market Trends
     - more if applicable.. (and do not hesitate to add more sections if needed)
-    3. Sector-wise Stock Trends
+    3. Economic News
+    - itemized market and economic news
+    4. General News
+    - general day news items... 
+    5. Sector-wise Stock Trends
     - Technology Sector
     - Healthcare Sector
     - Energy Sector
@@ -148,11 +152,11 @@ def main(export_path):
     - Materials Sector
     - Real Estate Sector
     - more if applicable.. (and do not hesitate to add more sections if needed)
-    4. Opportunities and Risks
+    6. Opportunities and Risks
     - Opportunities
     - Risks
-    5. Conclusion
-    6. References (list, with items following style: e.g., [^1]: [Trading Economics - United States Stock Market](https://tradingeconomics.com/united-states/stock-market))
+    7. Conclusion
+    8. References (list, with items following style: e.g., [^1]: [Trading Economics - United States Stock Market](https://tradingeconomics.com/united-states/stock-market))
 
     
     Here is the context information provided to you:
