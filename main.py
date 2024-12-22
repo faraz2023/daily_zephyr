@@ -76,71 +76,78 @@ def get_news_from_perplexity():
 
 
 def main(export_path):
-    # overall_news_message = get_news_from_perplexity()
-    # openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    overall_news_message = get_news_from_perplexity()
+    openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-    # if not os.path.exists(export_path):
-    #     os.makedirs(export_path)
-
-
-    # start_time = time.time()
-    # prompt = f"""
-    # Using all insights and news provided below, write a detailed daily executive market report, titled "Daily Zephyr", tailored to the current date: {datetime.now().strftime('%Y-%m-%d')}. 
-    # Follow these instructions: 
-    # 1. IMPORTANT: Executive stock market report, in markdown format, at least 4000 words long and based solely on factual and actual information gathered from reputable sources and provided below. 
-    # 2. IMPORTANT: The citations and sources are provided to you for factual information, pay attention to keeping them, using them as reference and adding them in the output. For each cited source, keep the exact, full URL. ALL CITATION FOR EACH REFERENCED ITEM NEEDS TO BE INLINE AND FULLY WITHIN THE TEXT.
-    # 3. IMPORTANT: INCLUDE AS MUCH AS ACTUAL, MOST UP TO DATE NUMERICAL DATA AS POSSIBLE. DO NOT MAKE UP ANY INFORMATION, BUT TRY TO USE AS MUCH AS POSSIBLE THE INFORMATION PROVIDED TO YOU.
-    # 4. Most recent developments (economic, geopolitics, and general news) and their potential impact on Markets,  
-    # 5. Sector-wise Stock Trends (Technology, Healthcare, Energy, Financial Services, etc.) with specific references and values with most up to date information. 
-    # 6. Opportunities and Risks, with specific references and values with most up to date information. 
-    # 7. Output should be in (and only in) fully compliant markdown syntax and be formatted for professional distribution.
-    # Focus on providing numerical data and clear, actionable insights. Ample information is provided to you, do not make up information or use generalized suggestions, we want the report to be exhaustive, long, specific and advantageous as possible.
-    # Do not make up information or use generalized suggestions, we want the report to be specific and advantageous as possible.
-    # If you are using any of the references provided to you, make sure to cite them, provide full source in ["<source>"] format.
-    # Ensure the report is well-structured, long, and formatted for professional distribution.
+    if not os.path.exists(export_path):
+        os.makedirs(export_path)
 
 
-    # This should be a template for your table of contents:
+    start_time = time.time()
+    prompt = f"""
+    Using all insights and news provided below, write a detailed daily executive market report, titled "Daily Zephyr", tailored to the current date: {datetime.now().strftime('%Y-%m-%d')}. 
+    Follow these instructions: 
+    1. IMPORTANT: Executive stock market report, in markdown format, at least 4000 words long and based solely on factual and actual information gathered from reputable sources and provided below. 
+    2. IMPORTANT: The citations and sources are provided to you for factual information, pay attention to keeping them, using them as reference and adding them in the output. For each cited source, keep the exact, full URL. ALL CITATION FOR EACH REFERENCED ITEM NEEDS TO BE INLINE AND FULLY WITHIN THE TEXT.
+    3. IMPORTANT: INCLUDE AS MUCH AS ACTUAL, MOST UP TO DATE NUMERICAL DATA AS POSSIBLE. DO NOT MAKE UP ANY INFORMATION, BUT TRY TO USE AS MUCH AS POSSIBLE THE INFORMATION PROVIDED TO YOU.
+    4. Most recent developments (economic, geopolitics, and general news) and their potential impact on Markets,  
+    5. Sector-wise Stock Trends (Technology, Healthcare, Energy, Financial Services, etc.) with specific references and values with most up to date information. 
+    6. Opportunities and Risks, with specific references and values with most up to date information. 
+    7. Output should be in (and only in) fully compliant markdown syntax and be formatted for professional distribution.
+    Focus on providing numerical data and clear, actionable insights. Ample information is provided to you, do not make up information or use generalized suggestions, we want the report to be exhaustive, long, specific and advantageous as possible.
+    Do not make up information or use generalized suggestions, we want the report to be specific and advantageous as possible.
+    If you are using any of the references provided to you, make sure to cite them, provide full source in ["<source>"] format.
+    Ensure the report is well-structured, long, and formatted for professional distribution.
 
-    # ## Table of Contents
+    At the very end, add this disclaimer:
 
-    # 1. [Executive Summary](#executive-summary)
-    # 2. [Recent Developments and Market Impacts](#recent-developments-and-market-impacts)
-    # - [Geopolitical Landscape](#geopolitical-landscape)
-    # - [Economic Indicators](#economic-indicators)
-    # - [Global Market Trends](#global-market-trends)
-    # - more if applicable..
-    # 3. [Sector-wise Stock Trends](#sector-wise-stock-trends)
-    # - [Technology Sector](#technology-sector)
-    # - [Healthcare Sector](#healthcare-sector)
-    # - [Energy Sector](#energy-sector)
-    # - [Financial Services Sector](#financial-services-sector)
-    # - [Consumer Discretionary Sector](#consumer-discretionary-sector)
-    # - [Communication Services Sector](#communication-services-sector)
-    # - [Industrials Sector](#industrials-sector)
-    # - [Materials Sector](#materials-sector)
-    # - [Real Estate Sector](#real-estate-sector)
-    # - more if applicable..
-    # 4. [Opportunities and Risks](#opportunities-and-risks)
-    # - [Opportunities](#opportunities)
-    # - [Risks](#risks)
-    # 5. [Conclusion](#conclusion)
-    # 6. [References](#references)
+    '''
+    ---
+    *[Note: All data and events are accurate as of {datetime.now().strftime('%Y-%m-%d')} based on the provided sources. This report is intended for informational purposes and should not be construed as investment advice.]*
+    '''
 
-    # Here is the context information provided to you:
-    # {overall_news_message}
-    # """
 
-    # response = get_openai_response(openai_client, prompt)
-    # print(f"Finished openai response, took {round(time.time() - start_time, 2)} seconds")
+    This should be a template for your table of contents:
+
+    ## Table of Contents
+
+    1. [Executive Summary](#executive-summary)
+    2. [Recent Developments and Market Impacts](#recent-developments-and-market-impacts)
+    - [Geopolitical Landscape](#geopolitical-landscape)
+    - [Economic Indicators](#economic-indicators)
+    - [Global Market Trends](#global-market-trends)
+    - more if applicable..
+    3. [Sector-wise Stock Trends](#sector-wise-stock-trends)
+    - [Technology Sector](#technology-sector)
+    - [Healthcare Sector](#healthcare-sector)
+    - [Energy Sector](#energy-sector)
+    - [Financial Services Sector](#financial-services-sector)
+    - [Consumer Discretionary Sector](#consumer-discretionary-sector)
+    - [Communication Services Sector](#communication-services-sector)
+    - [Industrials Sector](#industrials-sector)
+    - [Materials Sector](#materials-sector)
+    - [Real Estate Sector](#real-estate-sector)
+    - more if applicable..
+    4. [Opportunities and Risks](#opportunities-and-risks)
+    - [Opportunities](#opportunities)
+    - [Risks](#risks)
+    5. [Conclusion](#conclusion)
+    6. [References](#references)
+
+    Here is the context information provided to you:
+    {overall_news_message}
+    """
+
+    response = get_openai_response(openai_client, prompt)
+    print(f"Finished openai response, took {round(time.time() - start_time, 2)} seconds")
 
     chat_raw_output_path = os.path.join(export_path, "chat_raw_output.md")
-    # with open(chat_raw_output_path, "w") as f:
-    #     f.write(response)
+    with open(chat_raw_output_path, "w") as f:
+        f.write(response)
 
-    # news_raw_output_path = os.path.join(export_path, "news_raw_output.md")
-    # with open(news_raw_output_path, "w") as f:
-    #     f.write(overall_news_message)
+    news_raw_output_path = os.path.join(export_path, "news_raw_output.md")
+    with open(news_raw_output_path, "w") as f:
+        f.write(overall_news_message)
     
     chat_html_output_path = os.path.join(export_path, "daily_zephyr.html")
     convert_md_to_html(chat_raw_output_path, chat_html_output_path)

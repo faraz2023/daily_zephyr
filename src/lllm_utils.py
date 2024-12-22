@@ -29,7 +29,7 @@ def get_openai_response(openai_client, message: str) -> str:
     return response.choices[0].message.content.strip()
 
 
-def query_perplexity(query: str, retries: int = 3):
+def query_perplexity(query: str, search_recency_filter: str = "day", retries: int = 3):
     """
     Use Perplexity to fetch the most up-to-date information.
     Adds a simple retry mechanism for graceful fault tolerance.
@@ -60,7 +60,7 @@ def query_perplexity(query: str, retries: int = 3):
         "search_domain_filter": ["perplexity.ai"],
         "return_images": False,
         "return_related_questions": False,
-        "search_recency_filter": "week",
+        "search_recency_filter": search_recency_filter,
         "top_k": 0,
         "stream": False,
         "presence_penalty": 0,
