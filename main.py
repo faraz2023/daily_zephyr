@@ -100,7 +100,7 @@ def main(export_path):
     Using all insights and news provided below, write a detailed daily executive market report, titled "Daily Zephyr", tailored to the current date: {datetime.now().strftime('%Y-%m-%d')}. 
     Follow these instructions: 
     1. IMPORTANT: Executive stock market report, in markdown format, at least 5000 words long and based solely on factual and actual information gathered from reputable sources and provided below. 
-    2. IMPORTANT: The citations and sources are provided to you for factual information, pay attention to keeping them, using them as reference and adding them in the output. For each cited source, keep the exact, full URL. ALL CITATION FOR EACH REFERENCED ITEM NEEDS TO BE INLINE AND FULLY WITHIN THE TEXT so it can work as a hyperlink in the markdown code.
+    2. IMPORTANT: The citations and sources are provided to you for factual information, pay attention to keeping them, using them as reference and adding them in the output. For each cited source, keep the exact, full URL. ALL CITATION FOR EACH REFERENCED ITEM NEEDS TO BE INLINE AND FULLY WITHIN THE TEXT so it can work as a hyperlink in the markdown code ( go with format e.g., :[^1](https://tandemadvisors.com/notes-)).
     3. IMPORTANT: INCLUDE AS MUCH AS ACTUAL, MOST UP TO DATE NUMERICAL DATA AS POSSIBLE. DO NOT MAKE UP ANY INFORMATION, BUT TRY TO USE AS MUCH AS POSSIBLE THE INFORMATION PROVIDED TO YOU. Prioritize the most up to date information from the context provided to you.
     4. IMPORTANT: MOST RECENT DEVELOPMENTS (ECONOMIC, GEOPOLITICAL, AND GENERAL NEWS) AND THEIR POTENTIAL IMPACT ON MARKETS, 
     5. IMPORTANT: SECTOR-WISE STOCK TRENDS (TECHNOLOGY, HEALTHCARE, ENERGY, FINANCIAL SERVICES, ETC.) WITH SPECIFIC REFERENCES AND VALUES WITH MOST UP TO DATE INFORMATION. 
@@ -114,8 +114,8 @@ def main(export_path):
     Start with: 
 
     '''
-    Daily Zephyr
-    Date: {datetime.now().strftime("%B %d, %Y")}
+    # Daily Zephyr
+    ## Date: {datetime.now().strftime("%B %d, %Y")}
     ---
     '''
 
