@@ -25,6 +25,13 @@ def get_news_from_perplexity():
     
     immediate_stock_market_news_message = embed_citations(immediate_stock_market_news['choices'][0]['message']['content'], immediate_stock_market_news['citations'])
     print(f"Finished immediate stock market news query, took {round(time.time() - start_time, 2)} seconds")
+    
+    start_time = time.time()
+    immediate_geopolitics_news = query_perplexity("Provide an exhaustive and detailed report on the geopolitical landscape and its\
+                                        potential impact on the stock market. Focus on the most recent developments and their potential implications\
+                                        for the market. Try to delve deep into the geopolitical landscape the tensions and growing areas of risk and opportunity. Report should be at least 2000 words long", search_recency_filter="day")
+    immediate_geopolitics_news_message = embed_citations(immediate_geopolitics_news['choices'][0]['message']['content'], immediate_geopolitics_news['citations'])
+    print(f"Finished immediate geopolitics news query, took {round(time.time() - start_time, 2)} seconds")
 
     start_time = time.time()
     geopolitics_response = query_perplexity("Provide an exhaustive and detailed report on the geopolitical landscape and its\
@@ -72,6 +79,7 @@ def get_news_from_perplexity():
 
     all_messages = {
         'immediate stock market news (24 hours- most up to date available information)': immediate_stock_market_news_message,
+        'immediate geopolitics news (24 hours- most up to date available information)': immediate_geopolitics_news_message,
         'geopolitics news': geopolitics_message,
         'stock market news': stock_market_message,
         'market news': market_news_message,
