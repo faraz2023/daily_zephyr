@@ -1,0 +1,28 @@
+draft_report:
+  description: >-
+    Write a comprehensive report of the markets, providing a comprehensive and data driven wide-ranging analysis of the current market conditions and the stocks. Provide information about realstate, commodities, currencies, crypto currencies, and other relevant market indicators. The report should REALLY span all information fitting for an executive report of markets
+  expected_output: >-
+    A comprehensive report of the markets, providing a comprehensive and data driven analysis of the current market conditions and the stocks across all relevant market sectors.
+  agent: >-
+    main_writer
+market_data_analysis_task:
+  description: >-
+    Analysis the most updated market data from one last day, one week and one month perspectives. Use the most updated information and statistics to provide a comprehensive and data driven analysis of the current market conditions and the stocks. We are interested in market trends, market indicators, and market conditions across different market sectors such as stocks (technology, healthcare, energy, and finance, etc), commodities (gold, silver, oil, etc), and currencies (USD, EUR, GBP, etc), and other relevant market indicators.
+  expected_output: >-
+    A comprehensive and data driven analysis and report of the current market conditions and the stocks.
+  agent: >-
+    financial_researcher
+data_distilation_and_critique_task:
+  description: >-
+    Distil the most important information from the market data analysis and provide a critique of the document, thereby providing a chance to the editor to flag out redundancies and shortfalls for the original writers to improve the document.
+  expected_output: >-
+    A critique of the document, thereby providing a chance to the editor to flag out redundancies and shortfalls for the original writers to improve the document.
+  agent: >-
+    editor
+finalize_report:
+  description: >-
+    Make the final touches and improvements to the document based on the context and the information provided by the rest of the crew.
+  expected_output: >-
+    A comprehensive and data driven analysis and report of the current market conditions and the stocks. The report should be fact-driven, detailed and concise, referencing exact information from up to date information sources. The report should be really fitting for an executive report of markets.
+  agent: >-
+    final_writer
