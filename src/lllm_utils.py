@@ -4,12 +4,13 @@ from datetime import datetime
 import json
 
 
-def get_openai_response(openai_client, message: str) -> str:
+def get_openai_response(openai_client, message: str, model: str = "o1-preview") -> str:
     """
     Sends a message to the OpenAI API and returns the assistant's response.
 
     Args:
         message (str): The user's input message.
+        model (str): The model to use for the response.
 
     Returns:
         str: The assistant's response.
@@ -21,7 +22,7 @@ def get_openai_response(openai_client, message: str) -> str:
 
     # Send the request to the OpenAI API
     response = openai_client.chat.completions.create(
-        model="o1-preview",  
+        model=model,
         messages=messages,
     )
 
@@ -29,7 +30,7 @@ def get_openai_response(openai_client, message: str) -> str:
     return response.choices[0].message.content.strip()
 
 
-def query_perplexity(query: str, search_recency_filter: str = "week", retries: int = 3):
+def query_perplexity(query: str, model: str = "sonar", search_recency_filter: str = "week", retries: int = 3):
     """
     Use Perplexity to fetch the most up-to-date information.
     Adds a simple retry mechanism for graceful fault tolerance.
@@ -49,7 +50,7 @@ def query_perplexity(query: str, search_recency_filter: str = "week", retries: i
 
     query = adage + query
     payload = {
-        "model": "llama-3.1-sonar-large-128k-online",
+        "model": model,
         "messages": [
             {"role": "system", "content": "Be precise and concise."},
             {"role": "user", "content": query}

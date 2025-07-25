@@ -20,7 +20,7 @@ def get_news_from_perplexity():
     immediate_stock_market_news = query_perplexity(f"Provide an exhaustive and detailed report on the stock market activity. Focused on today and ONLY today's date: {datetime.now().strftime('%Y-%m-%d')}\
                                             We want a sector by sector breakdown of the market activity and the most recent developments and changes in the market from the past 24 hours.\
                                             In each sector provide most recent changes for the whole sector as well as most important stocks in the sector. Focus only on the verified and factual information. Go overboard and overdrive with reading accurate and reliable sources.\
-                                            it is important that our analysis covers areas such as at least tech, health, energy, financial, consumer discretionary, communication, industrials, materials, real estate. Report should be at least 2000 words long\
+                                            it is important that our analysis covers areas such as at least tech (granular including semiconductors, AI, quantum, etc), health, energy, financial, consumer discretionary, communication, industrials, materials, real estate. Report should be at least 2000 words long\
                                             !!! Do not gather information from any chart or graph, only from the text. You have been shown to be unreliable at reading charts and graphs, so DO NOT do it and only rely on the text.", search_recency_filter="day")
     
     immediate_stock_market_news_message = embed_citations(immediate_stock_market_news['choices'][0]['message']['content'], immediate_stock_market_news['citations'])
@@ -45,7 +45,7 @@ def get_news_from_perplexity():
                                             We want a sector by sector breakdown of the market activity and the most recent developments and changes in the market.\
                                             In each sector provide most recent changes for the whole sector as well as most important stocks in the sector.\
                                             Focus on factual and numerical data available from the market from today's date: {datetime.now().strftime('%Y-%m-%d')}\
-                                            it is important that our analysis covers areas such as at least tech, health, energy, financial, consumer discretionary, communication, industrials, materials, real estate. Report should be at least 2000 words long")
+                                            it is important that our analysis covers areas such as at least tech (granular including semiconductors, AI, quantum, etc), health, energy, financial, consumer discretionary, communication, industrials, materials, real estate. Report should be at least 2000 words long")
                                             
     stock_market_message = embed_citations(stock_market_response['choices'][0]['message']['content'], stock_market_response['citations'])
     print(f"Finished stock market query, took {round(time.time() - start_time, 2)} seconds")
@@ -96,7 +96,21 @@ def get_news_from_perplexity():
 
 
 def main(export_path):
-    overall_news_message = get_news_from_perplexity()
+
+    # if exist, read from file
+    start_time = time.time()
+    if os.path.exists(os.path.join(export_path, "news_raw_output.md")):
+        with open(os.path.join(export_path, "news_raw_output.md"), "r") as f:
+            overall_news_message = f.read()
+        print(f"Read news from file, took {round(time.time() - start_time, 2)} seconds")
+    else:
+        overall_news_message = get_news_from_perplexity()
+        os.makedirs(export_path, exist_ok=True)
+        news_raw_output_path = os.path.join(export_path, "news_raw_output.md")
+        with open(news_raw_output_path, "w") as f:
+            f.write(overall_news_message)
+        print(f"Wrote news to file, took {round(time.time() - start_time, 2)} seconds")
+
     openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
     if not os.path.exists(export_path):
@@ -179,9 +193,6 @@ def main(export_path):
     with open(chat_raw_output_path, "w") as f:
         f.write(response)
 
-    news_raw_output_path = os.path.join(export_path, "news_raw_output.md")
-    with open(news_raw_output_path, "w") as f:
-        f.write(overall_news_message)
     
 
     # chat_raw_output_path = os.path.join(export_path, "chat_raw_output.md")
